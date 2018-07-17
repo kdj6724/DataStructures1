@@ -26,6 +26,13 @@ public:
       printf("%5.1f x^%d + ", coef_[i], degree_ - i);
     printf("%4.1f\n", cofe_[degree_]);
   }
-  void Add(
+  void Add(Polynomial a, Polynamial b) {
+    if (a.degree_ > b.degree_) {
+      *this = a;
+      for (int i=0; i<=b.degree_; i++)
+        coef_[i+degree_
+    } else {
+    }
+  }
 };
 #endif  // CH2_POLYNOMIAL_H_
