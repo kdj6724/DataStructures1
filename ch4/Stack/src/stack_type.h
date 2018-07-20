@@ -4,7 +4,6 @@
 #ifndef CH4_STACK_TYPE_H_
 #define CH4_STACK_TYPE_H_
 #include "item_type.h"
-#define MAX_ITEMS 100
 class FullStack {
 };
 class EmptyStack {
@@ -12,7 +11,9 @@ class EmptyStack {
 template<class ItemType>
 class StackType {
 public:
+  StackType(int max);
   StackType();
+  virtual ~StackType();
   bool IsEmpty() const;
   bool IsFull() const;
   void Push(ItemType item);
@@ -20,12 +21,25 @@ public:
   ItemType Top() const;
 private:
   int top_;
-  ItemType items_[MAX_ITEMS];
+  ItemType* items_;
+  int maxStack_;
 };
 
 template<class ItemType>
+StackType<ItemType>::StackType(int max) {
+  top_ = -1;
+  maxStack_ = max;
+  items_ = new ItemType[maxStack_];
+}
+template<class ItemType>
 StackType<ItemType>::StackType() {
   top_ = -1;
+  maxStack_ = 500;
+  items_ = new ItemType[maxStack_];
+}
+template<class ItemType>
+StackType<ItemType>::~StackType() {
+  delete [] items_;
 }
 template<class ItemType>
 bool StackType<ItemType>::IsEmpty() const {
@@ -33,7 +47,7 @@ bool StackType<ItemType>::IsEmpty() const {
 }
 template<class ItemType>
 bool StackType<ItemType>::IsFull() const {
-  return (top_ == MAX_ITEMS - 1);
+  return (top_ == maxStack_ - 1);
 }
 template<class ItemType>
 void StackType<ItemType>::Push(ItemType item) {
