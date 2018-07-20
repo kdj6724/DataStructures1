@@ -9,9 +9,8 @@ bool IsClosed(char symbol);
 bool Matches(char symbol, char openSymbol);
 
 int main() {
-  ItemType item;
   char symbol;
-  StackType stack;
+  StackType<char> stack;
   bool balanced = true;
   char openSymbol;
 
@@ -19,14 +18,12 @@ int main() {
   std::cin.get(symbol);
   while (symbol != '\n' && balanced) {
     if (IsOpen(symbol)) {
-      item.Initialize(symbol);
-      stack.Push(item);
+      stack.Push(symbol);
     } else if (IsClosed(symbol)) {
       if (stack.IsEmpty()) {
         balanced = false;
       } else {
-        item = stack.Top();
-        openSymbol = item.value_;
+        openSymbol = stack.Top();
         stack.Pop();
         balanced = Matches(symbol, openSymbol);
       }

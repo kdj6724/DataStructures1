@@ -15,6 +15,6 @@ include_directories(
 )
 add_executable(Stack
   src/main.cpp
-  src/stack_type.cpp
+  #src/stack_type.cpp
 )
 
