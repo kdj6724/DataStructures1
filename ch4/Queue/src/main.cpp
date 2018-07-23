@@ -3,13 +3,13 @@
 // kdj6724@gmail.com
 #include <iostream>
 #include "stack_type.h"
-#include "queue_type.h"
+#include "counted_queue_type.h"
 
 int main() {
   bool palindrome = true;
   char character;
   StackType<char> stack(40);
-  QueueType<char> queue(40);
+  CountedQueueType<char> queue(40);
   char stackChar;
   char queChar;
   std::cout << "Enter a string; press return." << std::endl;
@@ -19,6 +19,7 @@ int main() {
     queue.Enqueue(character);
     std::cin.get(character);
   }
+  std::cout << "Queue length : " << queue.LengthIs() << std::endl;
   while (palindrome && !queue.IsEmpty()) {
     stackChar = stack.Top();
     stack.Pop();

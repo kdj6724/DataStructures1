@@ -17,7 +17,7 @@ public:
   bool IsFull() const;
   void Enqueue(ItemType item);
   void Dequeue(ItemType& item);
-private:
+protected:
   int front_;
   int rear_;
   ItemType* items_;
@@ -75,3 +75,4 @@ void QueueType<ItemType>::Dequeue(ItemType& item) {
     item = items_[front_];
   }
 }
+
