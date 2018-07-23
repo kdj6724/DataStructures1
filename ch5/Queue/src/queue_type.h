@@ -34,9 +34,16 @@ QueueType<ItemType>::QueueType() {
 }
 template <class ItemType>
 QueueType<ItemType>::~QueueType() {
+  MakeEmpty();
 }
 template <class ItemType>
 void QueueType<ItemType>::MakeEmpty() {
+  NodeType<ItemType>* tempNode;
+  while (front_ != NULL) {
+    tempNode = front_;
+    front_ = front_->next;
+    delete tempNode;
+  }
 }
 template <class ItemType>
 void QueueType<ItemType>::Enqueue(ItemType item) {
